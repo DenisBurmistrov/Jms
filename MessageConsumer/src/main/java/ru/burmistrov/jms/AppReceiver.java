@@ -1,15 +1,15 @@
 package ru.burmistrov.jms;
 
 import ru.burmistrov.jms.storage.UserList;
-import ru.burmistrov.jms.utils.Receiver;
+import ru.burmistrov.jms.utils.Consumer;
 
 public class AppReceiver {
 
     public static void main(String[] args) throws Exception {
         UserList userList = new UserList();
-        Receiver receiver = new Receiver();
+        Consumer receiver = new Consumer();
 
-        receiver.receiveAndCreateUser(userList.getUsers());
+        receiver.consumeAndCreateUser(userList.getUsers());
         System.out.println("USERS: " + userList.getUsers());
     }
 }

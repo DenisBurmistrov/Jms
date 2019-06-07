@@ -8,10 +8,10 @@ import ru.burmistrov.jms.entity.User;
 import javax.jms.*;
 import java.util.List;
 
-public class Receiver implements ExceptionListener {
-    private final Logger logger = LoggerFactory.getLogger(Receiver.class);
+public class Consumer implements ExceptionListener {
+    private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
-    public void receiveAndCreateUser(List<User> users) throws InterruptedException {
+    public void consumeAndCreateUser(List<User> users) throws InterruptedException {
         Runnable recTask = () -> {
             try {
                 ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
@@ -43,7 +43,7 @@ public class Receiver implements ExceptionListener {
 
 
             } catch (JMSException e) {
-                logger.error("Receiver receiveAndCreateUser method error", e);
+                logger.error("Consumer consumeAndCreateUser method error", e);
             }
         };
         Thread thread = new Thread(recTask);

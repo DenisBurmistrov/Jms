@@ -5,11 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jms.*;
-import java.math.BigInteger;
-import java.security.SecureRandom;
 
-public class Sender {
-    private final Logger logger = LoggerFactory.getLogger(Sender.class);
+public class Producer {
+    private final Logger logger = LoggerFactory.getLogger(Producer.class);
 
     public void createMessage(String username, String password){
         Runnable sendTask = () -> {
@@ -32,7 +30,7 @@ public class Sender {
                 session.close();
                 connection.close();
             } catch (JMSException e) {
-                logger.error("Sender createMessage method error", e);
+                logger.error("Producer createMessage method error", e);
             }
         };
         new Thread(sendTask).start();
